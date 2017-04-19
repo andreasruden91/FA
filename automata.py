@@ -151,6 +151,7 @@ class NFA(FA):
 
     def eclose(self, state):
         """Epsilon closure on state"""
-        if NFA.epsilon not in self.trans_fun[state]:
+        if (NFA.epsilon not in self.trans_fun[state] or
+                NFA.emptyset in self.trans_fun[state][NFA.epsilon]):
             return set([state])
         return set([state] + self.trans_fun[state][NFA.epsilon])
